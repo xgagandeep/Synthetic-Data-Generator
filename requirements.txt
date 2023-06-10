@@ -4,3 +4,6 @@ pandas
 tensorflow
 numpy
 scikit-learn
+io
+zipfile
+PIL
