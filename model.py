@@ -1,9 +1,6 @@
 #!/usr/bin/env python
 # coding: utf-8
-
-# In[18]:
-
-
+# import files
 import tensorflow as tf
 from tensorflow.keras.layers import *
 from tensorflow.keras.models import Sequential
@@ -18,18 +15,18 @@ import numpy as np
 from numpy import  vstack
 import zipfile
 import io
+#loading the model and compiling it with optimizer and loss function
+generator_optimizer = tf.keras.optimizers.Adam(learning_rate=0.0001, beta_1=0.1, beta_2=0.99)
 
-# In[15]:
+def genLossFunc(Disc_Output):
+     return K.mean(tf.math.log(1 - Disc_Output))
 
+generator = tf.keras.models.load_model('Generator/Final_model.h5',compile=False)
 
+generator.compile(optimizer=generator_optimizer, loss=genLossFunc)
+
+#Generating the output
 def generate_image(model,number,all=False,number1=1):
-    """
-    Function to load image given image path
-    :param model: The GAN model 
-    :param image: The image to apply the GAN model on
-    :return: generated images
-    """
-
     if all==False:
         noise = tf.random.normal([number1,100])    
         number = np.full((number1), number, dtype=int)
@@ -43,47 +40,9 @@ def generate_image(model,number,all=False,number1=1):
     images = (images+1)/2.0
     return images
 
-# In[8]:
 
-
-discriminator_optimizer = tf.keras.optimizers.Adam(learning_rate=0.0001, beta_1=0.1, beta_2=0.99)
-generator_optimizer = tf.keras.optimizers.Adam(learning_rate=0.0001, beta_1=0.1, beta_2=0.99)
-
-# Loss function
-def genLossFunc(Disc_Output):
-     return K.mean(tf.math.log(1 - Disc_Output))
-def discLossFunc(real_output,fake_output):
-    # Compute the average log(D(x)) and log(1 - D(G(z)))
-    real_loss = tf.reduce_mean(tf.math.log(real_output))
-    fake_loss = tf.reduce_mean(tf.math.log(1 - fake_output))
-    
-    # Total discriminator loss
-    disc_loss = -0.5*(real_loss + fake_loss)
-    return disc_loss
-
-# discriminator.compile(optimizer=discriminator_optimizer, loss=discLossFunc)
-
-# Compile the generator
-
-
-# In[9]:
-
-
-generator = tf.keras.models.load_model('Generator/Final_model.h5',compile=False)
-
-generator.compile(optimizer=generator_optimizer, loss=genLossFunc)
-
-
-# In[16]:
-
-
-
-
-# In[17]:
-
-
-st.title("Synthetic Data Generator") # Set the title  
-# st.image('./horses_zebras.png') # set the featured image of the web application 
+st.title("Synthetic Data Generator") # the title  
+# asking for the options
 option = st.selectbox(
     'Would you like to Generate Every Digit',
     ('Yes', 'No'))
@@ -93,7 +52,7 @@ if option=="No":
 else:
     number =  np.asarray([x for _ in range(100) for x in range(10)])
 
-if st.button("Generate"): # if the user selected to use the default image
+if st.button("Generate"): # generate the images
     st.subheader("Synthetic Number")
     images=[]
     if option=="No":
@@ -103,6 +62,7 @@ if st.button("Generate"): # if the user selected to use the default image
         images = generate_image(generator,number,True)
         images = images.reshape(1000,28,28,1)
     st.image(images)
+#    Saving the images in a zip and giving the option to download
     images *= 255  # Convert to the range of 0-255
     images  = images.astype(np.uint8) 
     image_files = []
