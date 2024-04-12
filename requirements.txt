@@ -3,6 +3,6 @@ joblib
 pandas
 tensorflow
 keras==2.2.4
-numpy==1.23.5
+numpy
 scikit-learn
 Pillow==8.4.0
