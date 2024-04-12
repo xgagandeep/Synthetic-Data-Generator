@@ -1,7 +1,8 @@
 streamlit
 joblib
 pandas
-tensorflow
+tensorflow==1.15.0
+keras==2.2.4
 numpy
 scikit-learn
 Pillow==8.4.0
