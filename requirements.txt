@@ -1,7 +1,6 @@
 streamlit==1.38.0
 joblib
 pandas
-python==3.10.14
 tensorflow
 keras==2.9.0
 numpy
