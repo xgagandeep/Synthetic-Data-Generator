@@ -21,7 +21,7 @@ generator_optimizer = tf.keras.optimizers.Adam(learning_rate=0.0001, beta_1=0.1,
 def genLossFunc(Disc_Output):
      return K.mean(tf.math.log(1 - Disc_Output))
 
-generator = tf.keras.models.load_model('Generator/Final_model.keras',compile=False)
+generator = tf.keras.models.load_model("Generator/Final_model.keras",compile=False)
 
 generator.compile(optimizer=generator_optimizer, loss=genLossFunc)
 
