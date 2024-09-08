@@ -1,7 +1,7 @@
 streamlit==1.38.0
 joblib
 pandas
-tensorflow
+tensorflow==2.9.0
 keras==2.9.0
 numpy
 scikit-learn
