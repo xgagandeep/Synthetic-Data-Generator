@@ -1,5 +1,4 @@
 # Synthetic Data Generator
------------Deployed Version is not working but the code works on local machine. when loading Final_model.keras file, it shows that the file not found and if i use .h5 extension then it gives me another error but the same code works flawlessly locally. If anyone knows how to solve this let me know. Thanks --------------
 
 ## Table of Contents
 - [Introduction](#introduction)
@@ -33,6 +32,9 @@ Data scarcity is a common challenge in training deep learning models. High-quali
 - **Google Colab Integration**: Easily train the model using Google Colab with seamless Google Drive integration for saving checkpoints and generated images.
 - **Streamlit Web App**: Provides an interactive web interface to generate and download synthetic images on demand.
 - **Model Persistence**: Save and load trained models for continued training or deployment.
+
+-----------Deployed Version is not working but the code works on local machine. when loading Final_model.keras file, it shows that the file not found and if i use .h5 extension then it gives me another error but the same code works flawlessly locally. If anyone knows how to solve this let me know. Thanks --------------
+
 
 ## Architecture
 
