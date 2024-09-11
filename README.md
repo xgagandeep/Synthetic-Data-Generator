@@ -63,7 +63,7 @@ The project consists of two main components:
 ### Clone the Repository
 
 ```bash
-git clone https://github.com/yourusername/synthetic-data-generator.git
+git clone https://github.com/xgagandeep/synthetic-data-generator.git
 cd synthetic-data-generator
 ```
 
